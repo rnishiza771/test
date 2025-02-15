@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>天気情報表示</title>
+</head>
+<body>
+  <h1>天気情報</h1>
+  <div id="weather">天気情報を取得中...</div>
+
+  <script>
+    // 表示用の要素を取得
+    const weatherDiv = document.getElementById('weather');
+    
+    // 東京の緯度と経度
+    const latitude = 35.6895;
+    const longitude = 139.6917;
+    
+    // Open-Meteo APIのURLを作成（ここでは、1時間ごとの温度データを取得）
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`;
+
+    // fetchを使ってAPIにリクエスト
+    fetch(apiUrl)
+      .then(response => {
+        // HTTPエラーの場合は例外を投げる
+        if (!response.ok) {
+          throw new Error('ネットワークエラーが発生しました');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // APIから返されたJSONの構造は次のようになっています:
+        // { "hourly": { "time": [...], "temperature_2m": [...] } }
+        // ここでは、最初のデータを例として表示します。
+        const temperature = data.hourly.temperature_2m[0];
+        const time = data.hourly.time[0];
+        weatherDiv.textContent = `時間: ${time} の温度: ${temperature}°C`;
+      })
+      .catch(error => {
+        // エラー発生時にエラーメッセージを表示
+        weatherDiv.textContent = `エラー: ${error.message}`;
+      });
+  </script>
+</body>
+</html>
