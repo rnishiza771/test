@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>書籍管理ページ</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1, h2 { color: #333; }
+    form { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+    label { display: inline-block; width: 100px; }
+    input { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>書籍管理ページ</h1>
+
+  <!-- 書籍の登録 -->
+  <section id="book-registration">
+    <h2>書籍の登録</h2>
+    <form id="register-book-form">
+      <label for="book-title">書籍名:</label>
+      <input type="text" id="book-title" name="book-title" required><br>
+      <label for="page-count">ページ数:</label>
+      <input type="number" id="page-count" name="page-count" required><br>
+      <label for="registration-date">登録日:</label>
+      <input type="date" id="registration-date" name="registration-date" required><br>
+      <button type="submit">登録する</button>
+    </form>
+  </section>
+
+  <!-- 書籍情報の修正 -->
+  <section id="book-edit">
+    <h2>書籍情報の修正</h2>
+    <form id="edit-book-form">
+      <label for="edit-book-title">書籍名:</label>
+      <input type="text" id="edit-book-title" name="edit-book-title" required><br>
+      <label for="edit-page-count">ページ数:</label>
+      <input type="number" id="edit-page-count" name="edit-page-count" required><br>
+      <label for="edit-date">修正日:</label>
+      <input type="date" id="edit-date" name="edit-date" required><br>
+      <button type="submit">修正する</button>
+    </form>
+  </section>
+
+  <!-- 書籍の削除 -->
+  <section id="book-delete">
+    <h2>書籍の削除</h2>
+    <form id="delete-book-form">
+      <label for="delete-flag">削除フラグ:</label>
+      <input type="checkbox" id="delete-flag" name="delete-flag">
+      <br>
+      <button type="submit">削除する</button>
+    </form>
+  </section>
+
+  <!-- 読書ステータス更新 -->
+  <section id="reading-status">
+    <h2>読書ステータス更新</h2>
+    <form id="reading-status-form">
+      <label for="read-pages">読んだページ数:</label>
+      <input type="number" id="read-pages" name="read-pages" required><br>
+      <button type="submit">更新する</button>
+    </form>
+  </section>
+
+  <script>
+    // 書籍登録フォームの送信処理
+    document.getElementById('register-book-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {
+        title: document.getElementById('book-title').value,
+        totalPages: document.getElementById('page-count').value,
+        registeredDate: document.getElementById('registration-date').value
+      };
+      // ここでAJAXを使いバックエンドAPIにデータを送信
+      console.log("登録データ:", data);
+      alert('書籍が登録されました');
+    });
+
+    // 書籍情報修正フォームの送信処理
+    document.getElementById('edit-book-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {
+        title: document.getElementById('edit-book-title').value,
+        totalPages: document.getElementById('edit-page-count').value,
+        updatedDate: document.getElementById('edit-date').value
+      };
+      // ここでAJAXを使いバックエンドAPIに修正データを送信
+      console.log("修正データ:", data);
+      alert('書籍情報が更新されました');
+    });
+
+    // 書籍削除フォームの送信処理
+    document.getElementById('delete-book-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {
+        deleteFlag: document.getElementById('delete-flag').checked
+      };
+      // ここでAJAXを使いバックエンドAPIに削除フラグを送信
+      console.log("削除データ:", data);
+      alert('書籍が削除されました');
+    });
+
+    // 読書ステータス更新フォームの送信処理
+    document.getElementById('reading-status-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {
+        readPages: document.getElementById('read-pages').value
+      };
+      // ここでAJAXを使いバックエンドAPIに読書ステータス更新のデータを送信
+      console.log("読書ステータス更新データ:", data);
+      alert('読書ステータスが更新されました');
+    });
+  </script>
+</body>
+</html>
