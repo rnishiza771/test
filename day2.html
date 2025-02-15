@@ -2,23 +2,37 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>動きのあるWebページ</title>
-  <!-- head内にJavaScriptを書くことも可能です -->
-  <script>
-    // ボタンがクリックされたときに呼ばれる関数
-    function showMessage() {
-      // アラートでメッセージを表示する例
-      alert("こんにちは！ボタンがクリックされました。");
-      // ページ内の要素を操作してメッセージを表示する例
-      document.getElementById("message").innerHTML = "こんにちは！画面に表示されたメッセージです。";
+  <title>動的なWebページのサンプル</title>
+  <style>
+    /* 簡単なスタイル設定 */
+    #message {
+      margin-top: 20px;
+      font-size: 20px;
+      color: blue;
     }
-  </script>
+  </style>
 </head>
 <body>
-  <h1>動きのあるWebページの例</h1>
-  <!-- ボタンにクリック時の動作を設定 -->
-  <button onclick="showMessage()">メッセージを表示</button>
-  <!-- ここにJavaScriptでメッセージを表示します -->
-  <p id="message"></p>
+  <h1>JavaScriptで動くWebページ</h1>
+  <button id="myButton">メッセージを表示</button>
+  <div id="message"></div>
+
+  <script>
+    // ボタン要素を取得
+    const button = document.getElementById('myButton');
+
+    // ボタンクリック時に実行する関数
+    function showMessage() {
+      // アラートでメッセージを表示
+      alert("ボタンがクリックされました！");
+      
+      // DOM操作で画面内のテキストを更新
+      const messageDiv = document.getElementById('message');
+      messageDiv.textContent = "こんにちは！JavaScriptが動いています。";
+    }
+
+    // ボタンにクリックイベントリスナーを追加
+    button.addEventListener('click', showMessage);
+  </script>
 </body>
 </html>
