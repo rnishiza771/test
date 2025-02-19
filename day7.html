@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpine.js テスト</title>
+  <!-- Alpine.js の読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <style>
+    /* モーダルの簡単なスタイル */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .close {
+      cursor: pointer;
+      font-size: 20px;
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <!-- Alpine.js を利用したモーダルの例 -->
+  <div x-data="{ open: false }">
+    <button @click="open = true">モーダルを開く</button>
+    <div x-show="open"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         style="display: none;"
+         class="modal">
+      <div class="modal-content">
+        <span @click="open = false" class="close">&times;</span>
+        <p>これはモーダルの内容です。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alpine.js を利用したメニューの例 -->
+  <div x-data="{ menuOpen: false }" style="margin-top: 30px;">
+    <button @click="menuOpen = !menuOpen">メニューを切り替える</button>
+    <ul x-show="menuOpen" style="list-style: none; padding: 0;">
+      <li><a href="#">リンク1</a></li>
+      <li><a href="#">リンク2</a></li>
+      <li><a href="#">リンク3</a></li>
+    </ul>
+  </div>
+</body>
+</html>
