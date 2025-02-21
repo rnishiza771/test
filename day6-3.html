@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>レスポンシブデザイン（生のCSS）</title>
+
+  <style>
+    /* ベースリセット（簡易的） */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: #f3f4f6; /* Tailwindの bg-gray-100 に近い色 */
+    }
+
+    /* ヘッダー */
+    header {
+      background-color: #1d4ed8; /* Tailwindの bg-blue-600 に近い色 */
+      color: #ffffff;
+      padding: 1rem;
+    }
+
+    header h1 {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    /* メインコンテンツのコンテナ */
+    main {
+      max-width: 1200px; /* コンテンツ幅を制限 */
+      margin: 0 auto;    /* 中央寄せ */
+      padding: 1rem;     /* 余白 */
+    }
+
+    /* グリッドレイアウト（1列から始めて、画面幅に応じて増やす） */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr; /* 初期は1カラム */
+      gap: 1rem; /* カード同士の隙間 */
+    }
+
+    /* 画面幅640px以上 (sm相当) */
+    @media (min-width: 640px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2カラム */
+      }
+    }
+
+    /* 画面幅768px以上 (md相当) */
+    @media (min-width: 768px) {
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3カラム */
+      }
+    }
+
+    /* 画面幅1024px以上 (lg相当) */
+    @media (min-width: 1024px) {
+      .card-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4カラム */
+      }
+    }
+
+    /* カードの見た目 */
+    .card {
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 0.5rem; /* 角丸 */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影 */
+    }
+
+    /* フッター */
+    footer {
+      background-color: #111827; /* Tailwindの bg-gray-800 に近い色 */
+      color: #ffffff;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header>
+    <h1>レスポンシブデザイン サンプル（生のCSS）</h1>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main>
+    <div class="card-grid">
+      <div class="card">カード 1</div>
+      <div class="card">カード 2</div>
+      <div class="card">カード 3</div>
+      <div class="card">カード 4</div>
+      <div class="card">カード 5</div>
+      <div class="card">カード 6</div>
+      <div class="card">カード 7</div>
+      <div class="card">カード 8</div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    &copy; 2025 CSS Sample
+  </footer>
+</body>
+</html>
